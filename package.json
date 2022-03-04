@@ -6,6 +6,12 @@
   "scripts": {
     "start": "webpack serve"
   },
+  "babel": {
+    "presets": [
+      "@babel/preset-env",
+      "@babel/preset-react"
+    ]
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
