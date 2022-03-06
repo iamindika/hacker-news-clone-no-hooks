@@ -29,6 +29,25 @@ StoriesNav.propTypes = {
   handleClick: PropTypes.func.isRequired
 }
 
+function StoriesGrid({ stories }) {
+  return (
+    <section className="container">
+      {stories.map(story => (
+        <article 
+          className="story"
+          key={story.id}  
+        >
+          <h2 className="story__title">{story.title}</h2>
+        </article>
+      ))}
+    </section>
+  );
+}
+
+StoriesGrid.propTypes = {
+  stories: PropTypes.arrayOf(PropTypes.object).isRequired
+}
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -93,7 +112,7 @@ class App extends React.Component {
 
         {!this.state[selected] && !error 
           ? <p>Loading...</p>
-          : <pre>{JSON.stringify(this.state[selected], null, 2)}</pre>}
+          : <StoriesGrid stories={this.state[selected]}/>}
       </React.Fragment>
     )
   }
