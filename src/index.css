@@ -1,0 +1,33 @@
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font: 300 1rem 'Smooch Sans', sans-serif;
+}
+
+.container {
+  width: 80%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.nav {
+  margin-top: 5rem;
+  list-style: none;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+}
+
+.btn {
+  border: none;
+  padding: .25em;
+  background-color: transparent;
+  font-family: inherit;
+  font-size: 2rem;
+  font-weight: 600;
+}
