@@ -14,8 +14,8 @@ function getStoryDetails(id) {
   )
 }
 
-export function getTopStories() {
-  const endPoint = 'https://hacker-news.firebaseio.com/v0/topstories.json';
+export function getStories(type) {
+  const endPoint = `https://hacker-news.firebaseio.com/v0/${type.toLowerCase()}stories.json`;
 
   return (
     fetch(endPoint)
@@ -25,7 +25,7 @@ export function getTopStories() {
           throw new Error(data.error)
         }
 
-        return Promise.all(data.map(storyId => getStoryDetails(storyId)))
+        return Promise.all(data.splice(0, 50).map(storyId => getStoryDetails(storyId)))
       })
   )
 }
