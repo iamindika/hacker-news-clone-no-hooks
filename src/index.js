@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
-import { getTopStories } from './utils/api';
+import { getStories } from './utils/api';
 import './index.css';
 
 function StoriesNav({ selected, handleClick }) {
@@ -34,10 +34,45 @@ class App extends React.Component {
     super(props);
 
     this.state = {
-      selected: 'Top'
+      selected: 'Top',
+      error: null
     }
 
     this.handleClick = this.handleClick.bind(this);
+  }
+
+  componentDidMount() {
+    const {selected} = this.state;
+
+    getStories(selected)
+      .then(stories => this.setState({[selected]: stories}))
+      .catch(error => this.setState({error}));
+  }
+
+  componentDidUpdate() {
+    const {selected} = this.state;
+
+    if(!this.state[selected]) {
+      getStories(selected)
+        .then(stories => this.setState({
+          [selected]: stories,
+          error: null
+        }))
+        .catch(error => this.setState({error}));
+    } else {
+      getStories(selected)
+        .then(stories => {
+          if(this.state[selected][0].id !== stories[0].id) {
+            this.setState({
+              [selected]: null,
+              error: null
+            });
+
+            this.setState({[selected]: stories});
+          }
+        })
+        .catch(error => this.setState({error}));
+    }
   }
 
   handleClick(type) {
@@ -45,11 +80,21 @@ class App extends React.Component {
   }
 
   render() {
+    const {selected, error} = this.state;
+
     return (
-      <StoriesNav 
-        selected={this.state.selected}
-        handleClick={this.handleClick}
-      /> 
+      <React.Fragment>
+        <StoriesNav 
+          selected={this.state.selected}
+          handleClick={this.handleClick}
+        /> 
+
+        {error && <p>{error}</p>}
+
+        {!this.state[selected] && !error 
+          ? <p>Loading...</p>
+          : <pre>{JSON.stringify(this.state[selected], null, 2)}</pre>}
+      </React.Fragment>
     )
   }
 }
