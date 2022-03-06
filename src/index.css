@@ -18,6 +18,10 @@ html {
   list-style: none;
 }
 
+.nav > li + li {
+  margin-left: 1em;
+}
+
 .row {
   display: flex;
   flex-direction: row;
@@ -25,7 +29,6 @@ html {
 
 .btn {
   border: none;
-  padding: .25em;
   background-color: transparent;
   font-family: inherit;
   font-size: 2rem;
