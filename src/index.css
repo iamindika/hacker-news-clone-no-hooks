@@ -4,13 +4,22 @@
 }
 
 html {
-  font: 300 1rem 'Smooch Sans', sans-serif;
+  font: 400 1rem 'Smooch Sans', sans-serif;
 }
 
 .container {
   width: 80%;
   max-width: 1200px;
   margin: 0 auto;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+}
+
+.link {
+  color: #000;
 }
 
 .nav {
@@ -22,15 +31,29 @@ html {
   margin-left: 1em;
 }
 
-.row {
-  display: flex;
-  flex-direction: row;
-}
-
 .btn {
   border: none;
   background-color: transparent;
   font-family: inherit;
   font-size: 2rem;
   font-weight: 600;
+}
+
+.grid {
+  margin-top: 2rem;
+  margin-bottom: 5rem;
+}
+
+.story {
+  margin: 1.25rem 0;
+}
+.story__title {
+  color: #FF0800;
+  font-size: 1.75rem;
+  font-weight: 500;
+}
+
+.story__desc {
+  color: #808080;
+  font-size: 1.625rem;
 }
