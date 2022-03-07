@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
-import { getStories } from './utils/api';
+import {getStories} from './utils/api';
+import {getDateString} from './utils/date';
 import './index.css';
 
 function StoriesNav({ selected, handleClick }) {
@@ -38,6 +39,12 @@ function StoriesGrid({ stories }) {
           key={story.id}  
         >
           <h2 className="story__title">{story.title}</h2>
+          <p className="story__desc">
+            by <a href="#" className="link">{story.by}</a> on
+            &nbsp;{getDateString(story.time)} with 
+            &nbsp;<a href="#" className="link">{story.kids ? story.kids.length : 0}</a>
+            &nbsp;comments
+          </p>
         </article>
       ))}
     </section>
