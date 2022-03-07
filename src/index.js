@@ -16,7 +16,7 @@ function StoriesNav({ selected, handleClick }) {
         >
           <button
             className="btn"
-            style={selected === type ? {color: 'red'} : null}
+            style={selected === type ? {color: '#FF0800'} : null}
             onClick={() => handleClick(type)}
           >{type}</button>
         </li>
@@ -32,7 +32,7 @@ StoriesNav.propTypes = {
 
 function StoriesGrid({ stories }) {
   return (
-    <section className="container">
+    <section className="container grid">
       {stories.map(story => (
         <article 
           className="story"
