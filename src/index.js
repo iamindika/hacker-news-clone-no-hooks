@@ -5,7 +5,7 @@ import {getStories} from './utils/api';
 import {getDateString} from './utils/date';
 import './index.css';
 
-function StoriesNav({ selected, handleClick }) {
+function StoriesNav({selected, handleClick}) {
   const storyTypes = ['Top', 'New'];
 
   return (
@@ -30,7 +30,7 @@ StoriesNav.propTypes = {
   handleClick: PropTypes.func.isRequired
 }
 
-function StoriesGrid({ stories }) {
+function StoriesGrid({stories}) {
   return (
     <section className="container grid">
       {stories.map(story => (
@@ -38,7 +38,12 @@ function StoriesGrid({ stories }) {
           className="story"
           key={story.id}  
         >
-          <h2 className="story__title">{story.title}</h2>
+          <h2>
+            <a  
+              href={story.url}
+              className="story__title"
+            >{story.title}</a> 
+          </h2>
           <p className="story__desc">
             by <a href="#" className="link">{story.by}</a> on
             &nbsp;{getDateString(story.time)} with 
