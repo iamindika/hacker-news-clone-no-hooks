@@ -15,7 +15,7 @@ function StoriesNav({selected, handleClick}) {
           key={type} 
         >
           <button
-            className="btn"
+            className="btn link"
             style={selected === type ? {color: '#FF0800'} : null}
             onClick={() => handleClick(type)}
           >{type}</button>
@@ -45,9 +45,9 @@ function StoriesGrid({stories}) {
             >{story.title}</a> 
           </h2>
           <p className="story__desc">
-            by <a href="#" className="link">{story.by}</a> on
+            by <a href="#">{story.by}</a> on
             &nbsp;{getDateString(story.time)} with 
-            &nbsp;<a href="#" className="link">{story.kids ? story.kids.length : 0}</a>
+            &nbsp;<a href="#">{story.kids ? story.kids.length : 0}</a>
             &nbsp;comments
           </p>
         </article>

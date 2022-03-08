@@ -18,8 +18,15 @@ html {
   flex-direction: row;
 }
 
+.btn {
+  border: none;
+  background-color: transparent;
+  font-family: inherit;
+}
+
 .link {
-  color: #000;
+  font-size: 2rem;
+  font-weight: 600;
 }
 
 .nav {
@@ -29,14 +36,6 @@ html {
 
 .nav > li + li {
   margin-left: 1em;
-}
-
-.btn {
-  border: none;
-  background-color: transparent;
-  font-family: inherit;
-  font-size: 2rem;
-  font-weight: 600;
 }
 
 .grid {
@@ -57,4 +56,8 @@ html {
 .story__desc {
   color: #808080;
   font-size: 1.625rem;
+}
+
+.story__desc a {
+  color: #000;
 }
