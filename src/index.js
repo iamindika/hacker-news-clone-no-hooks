@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import Loading from './components/Loading';
 import PropTypes from 'prop-types';
 import {getStories} from './utils/api';
 import {getDateString} from './utils/date';
@@ -123,7 +124,7 @@ class App extends React.Component {
         {error && <p>{error}</p>}
 
         {!this.state[selected] && !error 
-          ? <p>Loading...</p>
+          ? <Loading text={`Fetching ${selected} Stories`} speed={200}/>
           : <StoriesGrid stories={this.state[selected]}/>}
       </React.Fragment>
     )
