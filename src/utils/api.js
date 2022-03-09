@@ -25,7 +25,7 @@ export function getStories(type) {
           throw new Error(data.error)
         }
 
-        return Promise.all(data.splice(0, 50).map(storyId => getStoryDetails(storyId)))
+        return Promise.all(data.map(storyId => getStoryDetails(storyId)))
       })
   )
 }
