@@ -47,8 +47,8 @@ function StoriesGrid({stories}) {
           </h2>
           <p className="story__desc">
             by <a href="#">{story.by}</a> on
-            &nbsp;{getDateString(story.time)} with 
-            &nbsp;<a href="#">{story.kids ? story.kids.length : 0}</a>
+            &nbsp;{getDateString(story.time)} with
+            &nbsp;<a href="#">{story.descendants}</a>
             &nbsp;comments
           </p>
         </article>
@@ -110,7 +110,7 @@ class App extends React.Component {
         />
 
         {!error && !this.state[selected]
-          ? <Loading text={`Fetching ${selected} Stories`} speed={200}/>
+          ? <Loading text={`Fetching ${selected} Stories`}/>
           : null} 
 
         {error && <p className="error">ERROR: {error}</p>}
