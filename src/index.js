@@ -78,32 +78,20 @@ class App extends React.Component {
 
     getStories(selected)
       .then(stories => this.setState({[selected]: stories}))
-      .catch(error => this.setState({error}));
+      .catch(error => this.setState({error: error.message}));
   }
 
-  componentDidUpdate() {
+  componentDidUpdate(prevProps, prevState) {
     const {selected} = this.state;
 
-    if(!this.state[selected]) {
+    if(prevState.selected !== selected && !this.state[selected]) {
+      this.setState({error: null});
+
       getStories(selected)
         .then(stories => this.setState({
           [selected]: stories,
-          error: null
         }))
-        .catch(error => this.setState({error}));
-    } else {
-      getStories(selected)
-        .then(stories => {
-          if(this.state[selected][0].id !== stories[0].id) {
-            this.setState({
-              [selected]: null,
-              error: null
-            });
-
-            this.setState({[selected]: stories});
-          }
-        })
-        .catch(error => this.setState({error}));
+        .catch(error => this.setState({error: error.message}));
     }
   }
 
@@ -119,13 +107,15 @@ class App extends React.Component {
         <StoriesNav 
           selected={this.state.selected}
           handleClick={this.handleClick}
-        /> 
+        />
 
-        {error && <p>{error}</p>}
-
-        {!this.state[selected] && !error 
+        {!error && !this.state[selected]
           ? <Loading text={`Fetching ${selected} Stories`} speed={200}/>
-          : <StoriesGrid stories={this.state[selected]}/>}
+          : null} 
+
+        {error && <p className="error">ERROR: {error}</p>}
+
+        {this.state[selected] && <StoriesGrid stories={this.state[selected]}/>}
       </React.Fragment>
     )
   }
