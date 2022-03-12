@@ -30,18 +30,29 @@ export function getStories(type) {
   )
 }
 
+function createUserMarkup(user) {
+  if(user.about) {
+    return {
+      ...user,
+      "__html": user.about
+    }
+  }
+
+  return user;
+}
+
 export function getUser(username) {
   const endPoint = `https://hacker-news.firebaseio.com/v0/user/${username}.json`;
 
   return (
     fetch(endPoint)
       .then(res => res.json())
-      .then(data => {
-        if(!data) {
+      .then(user => {
+        if(!user) {
           throw new Error(`${username} does not exist!`);
         }
 
-        return data;
+        return createUserMarkup(user);
       })
   )
 }
