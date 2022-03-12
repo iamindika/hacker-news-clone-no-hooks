@@ -44,5 +44,5 @@ User.propTypes = {
 };
 
 User.defaultProps = {
-  username: 'dynm'
+  username: 'leni536'
 };
