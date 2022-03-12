@@ -29,3 +29,19 @@ export function getStories(type) {
       })
   )
 }
+
+export function getUser(username) {
+  const endPoint = `https://hacker-news.firebaseio.com/v0/user/${username}`;
+
+  return (
+    fetch(endPoint)
+      .then(res => res.json())
+      .then(data => {
+        if(!data) {
+          throw new Error(`${username} does not exist!`);
+        }
+
+        return data;
+      })
+  )
+}
