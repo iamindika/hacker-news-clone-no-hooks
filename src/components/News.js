@@ -1,33 +1,9 @@
 import React from 'react';
-import Loading from './Loading';
 import PropTypes from 'prop-types';
+import Nav from './Nav';
+import Loading from './Loading';
 import {getStories} from '../utils/api';
 import {getDateString} from '../utils/date';
-
-function StoriesNav({selected, handleClick}) {
-  const storyTypes = ['Top', 'New'];
-
-  return (
-    <ul className="container nav row">
-      {storyTypes.map(type => (
-        <li 
-          key={type} 
-        >
-          <button
-            className="btn link"
-            style={selected === type ? {color: '#FF0800'} : null}
-            onClick={() => handleClick(type)}
-          >{type}</button>
-        </li>
-      ))}
-    </ul>
-  )
-} 
-
-StoriesNav.propTypes = {
-  selected: PropTypes.string.isRequired,
-  handleClick: PropTypes.func.isRequired
-}
 
 function StoriesGrid({stories}) {
   return (
@@ -102,7 +78,7 @@ export default class News extends React.Component {
 
     return (
       <React.Fragment>
-        <StoriesNav 
+        <Nav 
           selected={this.state.selected}
           handleClick={this.handleClick}
         />
