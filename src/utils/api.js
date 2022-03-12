@@ -31,7 +31,7 @@ export function getStories(type) {
 }
 
 export function getUser(username) {
-  const endPoint = `https://hacker-news.firebaseio.com/v0/user/${username}`;
+  const endPoint = `https://hacker-news.firebaseio.com/v0/user/${username}.json`;
 
   return (
     fetch(endPoint)
