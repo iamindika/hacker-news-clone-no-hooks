@@ -29,6 +29,10 @@ html {
   font-weight: 600;
 }
 
+.link:hover {
+  cursor: pointer;
+}
+
 .error {
   margin-top: 2rem;
   text-align: center;
