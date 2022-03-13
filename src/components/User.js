@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Nav from './Nav';
 import Loading from './Loading';
-import Posts from './Posts';
+import PostList from './PostList';
 import {
   getUser,
   getPostDetails, 
@@ -92,7 +92,7 @@ export default class User extends React.Component {
             <div className="container">
               <h2 style={style}>Posts</h2>
             </div>
-            <Posts posts={posts}/>
+            <PostList posts={posts}/>
           </React.Fragment>}
 
         {error && <p className="error">ERROR: {error}</p>}
