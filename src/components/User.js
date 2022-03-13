@@ -57,7 +57,8 @@ export default class User extends React.Component {
 
         Promise.all(user.submitted.map(postId => getPostDetails(postId)))
           .then(posts => {
-            const storyPosts = posts.filter(post => post.type === 'story')
+            const storyPosts = posts.filter(
+              post => !post.deleted && post.type === 'story')
 
             this.setState({posts: storyPosts});
           })
@@ -105,5 +106,5 @@ User.propTypes = {
 };
 
 User.defaultProps = {
-  username: 'leni536'
+  username: 'dynm'
 };
