@@ -2,7 +2,28 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Nav from './Nav';
 import Loading from './Loading';
-import {getUser} from '../utils/api';
+import {getUser, createUserMarkup} from '../utils/api';
+import {getDateString} from '../utils/date';
+
+function Profile({user}) {
+  return (
+    <div className="user container">
+      <h1 className="user__id">{user.id}</h1>
+      <p className="desc">
+        joined&nbsp; 
+        <span className="desc--bold">{getDateString(user.created)}</span> 
+        &nbsp;has&nbsp;
+        <span className="desc--bold">{new Number(user.karma).toLocaleString()}</span>
+        &nbsp;karma
+      </p>
+      {user.about 
+        && <div
+              className="user__misc" 
+              dangerouslySetInnerHTML={createUserMarkup(user)}
+            />}
+    </div>
+  )
+}
 
 export default class User extends React.Component {
   constructor(props) {
@@ -33,7 +54,7 @@ export default class User extends React.Component {
 
         {error && <p className="error">ERROR: {error}</p>}
 
-        {user && <pre>{JSON.stringify(user, null, 2)}</pre>}
+        {user && <Profile user={user}/>}
       </React.Fragment>
     )
   }
