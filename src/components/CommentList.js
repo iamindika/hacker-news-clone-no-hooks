@@ -35,7 +35,7 @@ export default class CommentList extends React.Component {
 
   render() {
     const {post, comments, error} = this.state;
-    console.log(comments);
+    
     return (
       <React.Fragment>
         <Nav/>
