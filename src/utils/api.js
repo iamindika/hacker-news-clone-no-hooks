@@ -30,15 +30,10 @@ export function getStories(type) {
   )
 }
 
-function createUserMarkup(user) {
-  if(user.about) {
-    return {
-      ...user,
-      "__html": user.about
-    }
+export function createUserMarkup(user) {
+  return {
+    "__html": user.about
   }
-
-  return user;
 }
 
 export function getUser(username) {
@@ -52,7 +47,7 @@ export function getUser(username) {
           throw new Error(`${username} does not exist!`);
         }
 
-        return createUserMarkup(user);
+        return user;
       })
   )
 }
