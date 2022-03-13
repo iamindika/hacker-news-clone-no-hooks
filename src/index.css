@@ -68,18 +68,18 @@ html {
   margin-bottom: 5rem;
 }
 
-.story {
+.post {
   margin: 1.25rem 0;
 }
-.story__title {
+
+.post__title {
   text-decoration: none;
   color: #FF0800;
-  font-size: 1.75rem;
   font-weight: 500;
 }
 
 .user {
-  margin-top: 3rem;
+  margin-top: 2rem;
 }
 
 .user__id {
