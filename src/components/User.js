@@ -25,6 +25,10 @@ function Profile({user}) {
   )
 }
 
+Profile.propTypes = {
+  user: PropTypes.object.isRequired
+}
+
 export default class User extends React.Component {
   constructor(props) {
     super(props);
