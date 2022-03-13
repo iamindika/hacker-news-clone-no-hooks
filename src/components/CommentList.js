@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Nav from './Nav';
 import Loading from './Loading';
 import Post from './Post';
+import Comment from './Comment';
 import {getPostDetails} from '../utils/api';
 
 export default class CommentList extends React.Component {
@@ -59,6 +60,21 @@ export default class CommentList extends React.Component {
           ? <Loading text="Fetching Comments"/>
           : null}
 
+        {comments && (
+          <section
+            className="container grid"
+          >
+            {comments.filter(comment => !comment.deleted)
+              .map(comment => (
+                <Comment 
+                  key={comment.id}
+                  comment={comment}
+                />
+              ))
+            }
+          </section>
+        )}
+
         {error && <p className="error">{error}</p>}
       </React.Fragment>
     )
@@ -70,5 +86,5 @@ CommentList.propTypes = {
 }
 
 CommentList.defaultProps = {
-  id: 30660534
+  id: 30661852
 }
