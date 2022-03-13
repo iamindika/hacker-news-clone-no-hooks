@@ -41,6 +41,19 @@ html {
   font-weight: 600;
 }
 
+.desc {
+  color: #808080;
+  font-size: 1.625rem;
+}
+
+.desc a {
+  color: #000;
+}
+
+.desc--bold {
+  font-weight: 600;
+}
+
 .nav {
   margin-top: 5rem;
   list-style: none;
@@ -65,11 +78,16 @@ html {
   font-weight: 500;
 }
 
-.story__desc {
-  color: #808080;
-  font-size: 1.625rem;
+.user {
+  margin-top: 3rem;
 }
 
-.story__desc a {
-  color: #000;
+.user__id {
+  font-size: 3rem;
+  font-weight: 600;
+}
+
+.user__misc {
+  font-size: 1.625rem;
+  line-height: 2;
 }
