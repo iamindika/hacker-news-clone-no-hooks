@@ -6,7 +6,7 @@ import PostList from './PostList';
 import {
   getUser,
   getPostDetails, 
-  createUserMarkup} from '../utils/api';
+  createMarkup} from '../utils/api';
 import {getDateString} from '../utils/date';
 
 const style = {
@@ -29,7 +29,7 @@ function Profile({user}) {
       {user.about 
         && <div
               className="user__misc" 
-              dangerouslySetInnerHTML={createUserMarkup(user)}
+              dangerouslySetInnerHTML={createMarkup(user.about)}
             />}
     </div>
   )
@@ -106,5 +106,5 @@ User.propTypes = {
 };
 
 User.defaultProps = {
-  username: 'dynm'
+  username: 'Topolomancer'
 };
