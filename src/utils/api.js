@@ -1,20 +1,20 @@
-function getStoryDetails(id) {
+export function getPostDetails(id) {
   const endPoint = `https://hacker-news.firebaseio.com/v0/item/${id}.json`;
   
   return (
     fetch(endPoint)
     .then(res => res.json())
-    .then(story => {
-      if(!story) {
+    .then(post => {
+      if(!post) {
         throw new Error(`error fetching story id: ${id}`)
       }
 
-      return story;
+      return post;
     })
   )
 }
 
-export function getStories(type) {
+export function getPosts(type) {
   const endPoint = `https://hacker-news.firebaseio.com/v0/${type.toLowerCase()}stories.json`;
 
   return (
@@ -25,7 +25,7 @@ export function getStories(type) {
           throw new Error(data.error)
         }
 
-        return Promise.all(data.map(storyId => getStoryDetails(storyId)))
+        return Promise.all(data.map(postId => getPostDetails(postId)))
       })
   )
 }
