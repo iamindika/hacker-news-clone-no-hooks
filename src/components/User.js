@@ -2,8 +2,18 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Nav from './Nav';
 import Loading from './Loading';
-import {getUser, createUserMarkup} from '../utils/api';
+import Posts from './Posts';
+import {
+  getUser,
+  getPostDetails, 
+  createUserMarkup} from '../utils/api';
 import {getDateString} from '../utils/date';
+
+const style = {
+  marginTop: '3rem',
+  fontSize: '2.5rem',
+  fontWeight: '500',
+}
 
 function Profile({user}) {
   return (
@@ -35,18 +45,32 @@ export default class User extends React.Component {
 
     this.state = {
       user: null,
-      error: null
+      error: null,
+      posts: null
     }
   }
 
   componentDidMount() {
     getUser(this.props.username)
-      .then(user => this.setState({user}))
+      .then(user => {
+        this.setState({user})
+
+        Promise.all(user.submitted.map(postId => getPostDetails(postId)))
+          .then(posts => {
+            const storyPosts = posts.filter(post => post.type === 'story')
+
+            this.setState({posts: storyPosts});
+          })
+      })
       .catch(error => this.setState({error: error.message}));
   }
 
   render() {
-    const {user, error} = this.state;
+    const {user, error, posts} = this.state;
+    
+    if(posts) {
+      console.log('Posts: ', posts);
+    }
 
     return (
       <React.Fragment>
@@ -56,9 +80,21 @@ export default class User extends React.Component {
           ? <Loading text="Fetching User"/>
           : null}
 
-        {error && <p className="error">ERROR: {error}</p>}
-
         {user && <Profile user={user}/>}
+        
+        {user && !posts 
+          ? <Loading text="Fetching Posts"/>
+          : null}
+        
+        {posts && 
+          <React.Fragment>
+            <div className="container">
+              <h2 style={style}>Posts</h2>
+            </div>
+            <Posts posts={posts}/>
+          </React.Fragment>}
+
+        {error && <p className="error">ERROR: {error}</p>}
       </React.Fragment>
     )
   }
