@@ -1,7 +1,7 @@
 import React from 'react';
 import Nav from './Nav';
 import Loading from './Loading';
-import Posts from './Posts';
+import PostList from './PostList';
 import {getPosts} from '../utils/api';
 
 export default class News extends React.Component {
@@ -58,7 +58,7 @@ export default class News extends React.Component {
 
         {error && <p className="error">ERROR: {error}</p>}
 
-        {this.state[selected] && <Posts posts={this.state[selected]}/>}
+        {this.state[selected] && <PostList posts={this.state[selected]}/>}
       </React.Fragment>
     )
   }
