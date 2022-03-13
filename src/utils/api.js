@@ -30,9 +30,9 @@ export function getPosts(type) {
   )
 }
 
-export function createUserMarkup(user) {
+export function createMarkup(innerHtml) {
   return {
-    "__html": user.about
+    "__html": innerHtml
   }
 }
 
