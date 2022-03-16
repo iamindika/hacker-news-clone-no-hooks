@@ -2,7 +2,7 @@ import React from 'react';
 import Nav from './Nav';
 import Loading from './Loading';
 import PostList from './PostList';
-import {getPosts} from '../utils/api';
+import {getPosts, getPostDetails} from '../utils/api';
 
 export default class News extends React.Component {
   constructor(props) {
@@ -20,7 +20,10 @@ export default class News extends React.Component {
     const {selected} = this.state;
 
     getPosts(selected)
-      .then(posts => this.setState({[selected]: posts}))
+      .then(data => {
+        Promise.all(data.slice(0, 50).map(postId => getPostDetails(postId)))
+          .then(posts => this.setState({[selected]: posts}))
+      })
       .catch(error => this.setState({error: error.message}));
   }
 
@@ -31,9 +34,10 @@ export default class News extends React.Component {
       this.setState({error: null});
 
       getPosts(selected)
-        .then(posts => this.setState({
-          [selected]: posts,
-        }))
+        .then(data => {
+          Promise.all(data.slice(0, 50).map(postId => getPostDetails(postId)))
+            .then(posts => this.setState({[selected]: posts}))
+        })
         .catch(error => this.setState({error: error.message}));
     }
   }
