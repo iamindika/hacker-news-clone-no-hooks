@@ -25,7 +25,7 @@ export function getPosts(type) {
           throw new Error(data.error)
         }
 
-        return Promise.all(data.map(postId => getPostDetails(postId)))
+        return data;
       })
   )
 }
