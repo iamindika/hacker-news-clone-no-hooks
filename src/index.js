@@ -8,7 +8,7 @@ import './index.css';
 function App(props) {
   return (
     <React.Fragment>
-      <CommentList/>
+      <News/>
     </React.Fragment>
   )
 }
