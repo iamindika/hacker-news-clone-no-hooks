@@ -1,12 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {ThemeContext} from '../contexts/theme';
 
 const style = {
   content: {
     marginTop: '2rem',
     textAlign: 'center',
+    color: 'inherit',
     fontSize: '2rem',
-    fontWeight: '600'
+    fontWeight: '600',
   }
 }
 
@@ -36,7 +38,13 @@ export default class Loading extends React.Component {
     const {content} = this.state;
 
     return (
-      <p style={style.content}>{content}</p>
+      <ThemeContext.Consumer>
+        {(theme) => (
+          <div style={{color: theme === 'dark' ? '#FFF' : '#000'}}>
+            <p style={style.content}>{content}</p>
+          </div>
+        )}
+      </ThemeContext.Consumer>
     )
   }
 }
