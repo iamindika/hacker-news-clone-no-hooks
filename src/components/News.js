@@ -63,7 +63,13 @@ export default class News extends React.Component {
               ? <Loading text={`Fetching ${selected} Stories`}/>
               : null} 
 
-            {error && <p className="error">ERROR: {error}</p>}
+              {error && (
+                <div className="error">
+                  <p className={
+                    `error__text error__text--${theme === 'light' ? 'dark' : 'light'}`
+                  }>ERROR: {error}</p>
+                </div>
+              )}
 
             {this.state[selected] && <PostList posts={this.state[selected]}/>}
           </div>
