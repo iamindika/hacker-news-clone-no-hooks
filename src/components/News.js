@@ -38,6 +38,7 @@ export default class News extends React.Component {
         .then(data => {
           Promise.all(data.slice(0, 50).map(postId => getPostDetails(postId)))
             .then(posts => this.setState({[selected]: posts}))
+            .catch(error => this.setState({error: error.message}))
         })
         .catch(error => this.setState({error: error.message}));
     }
