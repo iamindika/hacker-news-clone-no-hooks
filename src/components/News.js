@@ -3,6 +3,7 @@ import Nav from './Nav';
 import Loading from './Loading';
 import PostList from './PostList';
 import {getPosts, getPostDetails} from '../utils/api';
+import {ThemeContext} from '../contexts/theme';
 
 export default class News extends React.Component {
   constructor(props) {
@@ -50,20 +51,24 @@ export default class News extends React.Component {
     const {selected, error} = this.state;
 
     return (
-      <React.Fragment>
-        <Nav 
-          selected={this.state.selected}
-          handleClick={this.handleClick}
-        />
+      <ThemeContext.Consumer>
+        {({theme}) => (
+          <div className={`bg-${theme}`}>
+            <Nav 
+              selected={this.state.selected}
+              handleClick={this.handleClick}
+            />
 
-        {!error && !this.state[selected]
-          ? <Loading text={`Fetching ${selected} Stories`}/>
-          : null} 
+            {!error && !this.state[selected]
+              ? <Loading text={`Fetching ${selected} Stories`}/>
+              : null} 
 
-        {error && <p className="error">ERROR: {error}</p>}
+            {error && <p className="error">ERROR: {error}</p>}
 
-        {this.state[selected] && <PostList posts={this.state[selected]}/>}
-      </React.Fragment>
+            {this.state[selected] && <PostList posts={this.state[selected]}/>}
+          </div>
+        )}
+      </ThemeContext.Consumer>
     )
   }
 }
