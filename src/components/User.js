@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Nav from './Nav';
 import Loading from './Loading';
 import PostList from './PostList';
+import {ThemeContext} from '../contexts/theme';
 import {
   getUser,
   getPostDetails, 
@@ -17,21 +18,25 @@ const style = {
 
 function Profile({user}) {
   return (
-    <div className="user container">
-      <h1 className="user__id">{user.id}</h1>
-      <p className="desc">
-        joined&nbsp; 
-        <span className="desc--bold">{getDateString(user.created)}</span> 
-        &nbsp;has&nbsp;
-        <span className="desc--bold">{new Number(user.karma).toLocaleString()}</span>
-        &nbsp;karma
-      </p>
-      {user.about 
-        && <div
-              className="user__misc" 
-              dangerouslySetInnerHTML={createMarkup(user.about)}
-            />}
-    </div>
+    <ThemeContext.Consumer>
+      {({theme}) => (
+        <div className={`user container bg-${theme}`}>
+          <h1 className="user__id">{user.id}</h1>
+          <p className="desc">
+            joined&nbsp; 
+            <span className="desc--bold">{getDateString(user.created)}</span> 
+            &nbsp;has&nbsp;
+            <span className="desc--bold">{new Number(user.karma).toLocaleString()}</span>
+            &nbsp;karma
+          </p>
+          {user.about 
+            && <div
+                  className="user__misc" 
+                  dangerouslySetInnerHTML={createMarkup(user.about)}
+                />}
+        </div>
+      )}
+    </ThemeContext.Consumer>
   )
 }
 
@@ -74,29 +79,40 @@ export default class User extends React.Component {
     }
 
     return (
-      <React.Fragment>
-        <Nav/>
+      <ThemeContext.Consumer>
+        {({theme}) => (
+          <div className={`bg-${theme}`}>
+            <Nav/>
 
-        {!user && !error 
-          ? <Loading text="Fetching User"/>
-          : null}
+            {!user && !error 
+              ? <Loading text="Fetching User"/>
+              : null}
 
-        {user && <Profile user={user}/>}
-        
-        {user && !posts 
-          ? <Loading text="Fetching Posts"/>
-          : null}
-        
-        {posts && 
-          <React.Fragment>
-            <div className="container">
-              <h2 style={style}>Posts</h2>
-            </div>
-            <PostList posts={posts}/>
-          </React.Fragment>}
+            {user && <Profile user={user}/>}
+            
+            {user && !posts 
+              ? <Loading text="Fetching Posts"/>
+              : null}
+            
+            {posts && 
+              <React.Fragment>
+                <div className="container">
+                  <h2 style={style}>Posts</h2>
+                </div>
+                <PostList posts={posts}/>
+              </React.Fragment>}
 
-        {error && <p className="error">ERROR: {error}</p>}
-      </React.Fragment>
+            {error && (
+              <div className="error">
+                <p className={
+                  `error__text error__text--${theme === 'light' ? 'dark' : 'light'}`
+                }>ERROR: {error}</p>
+              </div>
+            )}
+          </div>
+        )}
+
+      </ThemeContext.Consumer>
     )
   }
 }
