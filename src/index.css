@@ -26,13 +26,20 @@ html {
 
 .link {
   text-decoration: none;
-  color: #000;
   font-size: 2rem;
   font-weight: 600;
 }
 
 .link:hover {
   cursor: pointer;
+}
+
+.light-link {
+  color: rgb(250, 240, 230);
+}
+
+.dark-link {
+  color: #000;
 }
 
 .error {
@@ -47,26 +54,35 @@ html {
   font-size: 1.625rem;
 }
 
-.desc a {
-  color: #000;
-}
-
 .desc--bold {
   font-weight: 600;
 }
 
+.bg-dark {
+  background-color: rgb(54, 69, 78);
+}
+
+.icon {
+  cursor: pointer;
+}
+
 .nav {
-  margin-top: 5rem;
+  padding-top: 5rem;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav__list {
   list-style: none;
 }
 
-.nav > li + li {
+.nav__list > li + li {
   margin-left: 1em;
 }
 
 .grid {
   margin-top: 2rem;
-  margin-bottom: 5rem;
+  padding-bottom: 5rem;
 }
 
 .post {
@@ -77,6 +93,10 @@ html {
   text-decoration: none;
   color: #FF0800;
   font-weight: 500;
+}
+
+.post__title--dark {
+  color: rgb(250, 240, 230);
 }
 
 .user {
