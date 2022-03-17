@@ -39,8 +39,11 @@ export default class Loading extends React.Component {
 
     return (
       <ThemeContext.Consumer>
-        {(theme) => (
-          <div style={{color: theme === 'dark' ? '#FFF' : '#000'}}>
+        {({theme}) => (
+          <div style={{
+            minHeight: '100vh',
+            color: theme === 'dark' ? '#FFF' : '#000'
+          }}>
             <p style={style.content}>{content}</p>
           </div>
         )}
