@@ -32,7 +32,7 @@ export default function Nav({selected, handleClick}) {
             {theme === 'dark' 
               ? <MdLightMode 
                   className='icon'
-                  color={'rgb(250, 240, 230)'}
+                  color={'rgb(253, 255, 0)'}
                   size={40}
                 />
               : <MdDarkMode 
