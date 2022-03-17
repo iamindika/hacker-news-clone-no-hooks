@@ -13,7 +13,7 @@ export default function Post({post, size}) {
           <h2 style={{fontSize: size.toString() + 'rem'}}>
             <a  
               href={post.url}
-              className={`post__title post__title--${theme}`}
+              className={`post__title post__title--${theme === 'dark' ? 'light' : 'dark'}`}
             >{post.title}</a> 
           </h2>
           <p className="desc">
