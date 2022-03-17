@@ -17,12 +17,16 @@ export default function Nav({selected, handleClick}) {
               > 
                 {selected 
                   ? <button
-                      className={`btn link ${theme === 'dark' && 'light-link'}`}
+                      className={
+                        `btn link ${theme === 'dark' ? 'light' : 'dark'}-link`
+                      }
                       style={selected === type ? {color: '#FF0800'} : null}
                       onClick={() => handleClick(type)}
                     >{type}</button>
                   : <a 
-                      className="link"
+                      className={
+                        `link ${theme === 'dark' ? 'light' : 'dark'}-link`
+                      }
                       href="#"
                     >{type}</a>}
               </li>
