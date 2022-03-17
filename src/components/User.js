@@ -64,6 +64,7 @@ export default class User extends React.Component {
           .then(posts => {
             const storyPosts = posts.filter(
               post => !post.deleted && post.type === 'story')
+              .slice(0, 50);
 
             this.setState({posts: storyPosts});
           })
