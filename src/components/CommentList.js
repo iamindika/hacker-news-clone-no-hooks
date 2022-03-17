@@ -4,6 +4,7 @@ import Nav from './Nav';
 import Loading from './Loading';
 import Post from './Post';
 import Comment from './Comment';
+import {ThemeContext} from '../contexts/theme';
 import {getPostDetails} from '../utils/api';
 
 export default class CommentList extends React.Component {
@@ -37,48 +38,59 @@ export default class CommentList extends React.Component {
     const {post, comments, error} = this.state;
     
     return (
-      <React.Fragment>
-        <Nav/>
-        
-        {!post && !error 
-          ? <Loading text="Fetching Post"/>
-          : null}
+      <ThemeContext.Consumer>
+        {({theme}) => (
+          <div className={`bg-${theme}`}>
+            <Nav/>
+            
+            {!post && !error 
+              ? <Loading text="Fetching Post"/>
+              : null}
 
-        {post && (
-          <div 
-            className="container"
-            style={{marginTop: '2rem'}}
-          >
-            <Post 
-              post={post}
-              size={3}  
-            />
-          </div> 
-        )}
-
-        {post && !comments
-          ? <Loading text="Fetching Comments"/>
-          : null}
-
-        {comments && (
-          <section
-            className="container grid"
-          >
-            {comments.filter(comment => !comment.deleted)
-              .map(comment => (
-                <Comment 
-                  key={comment.id}
-                  comment={comment}
+            {post && (
+              <div 
+                className="container"
+                style={{marginTop: '2rem'}}
+              >
+                <Post 
+                  post={post}
+                  size={3}  
                 />
-              ))
-            }
-          </section>
-        )}
+              </div> 
+            )}
 
-        {error && <p className="error">{error}</p>}
-      </React.Fragment>
+            {post && !comments
+              ? <Loading text="Fetching Comments"/>
+              : null}
+
+            {comments && (
+              <section
+                className="container grid"
+              >
+                {comments.filter(comment => !comment.deleted)
+                  .slice(0, 50)
+                  .map(comment => (
+                    <Comment 
+                      key={comment.id}
+                      comment={comment}
+                    />
+                  ))
+                }
+              </section>
+            )}
+
+            {error && (
+              <div className="error">
+                <p className={
+                  `error__text error__text--${theme === 'light' ? 'dark' : 'light'}`
+                }>ERROR: {error}</p>
+              </div>
+            )}
+          </div>
+        )}
+      </ThemeContext.Consumer>
     )
-    }
+  }
 }
 
 CommentList.propTypes = {
