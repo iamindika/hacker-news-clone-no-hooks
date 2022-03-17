@@ -44,10 +44,18 @@ html {
 
 .error {
   margin-top: 2rem;
+  min-height: 100vh;
+}
+
+.error__text {
   text-align: center;
   font-size: 2rem;
   font-weight: 600;
 }
+
+.error__text--light {
+  color: rgb(250, 240, 230);
+} 
 
 .desc {
   color: #808080;
@@ -95,7 +103,7 @@ html {
   font-weight: 500;
 }
 
-.post__title--dark {
+.post__title--light {
   color: rgb(250, 240, 230);
 }
 
