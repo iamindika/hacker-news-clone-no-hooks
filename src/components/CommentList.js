@@ -82,7 +82,7 @@ export default class CommentList extends React.Component {
             {error && (
               <div className="error">
                 <p className={
-                  `error__text error__text--${theme === 'light' ? 'dark' : 'light'}`
+                  `error__text`
                 }>ERROR: {error}</p>
               </div>
             )}

@@ -103,13 +103,7 @@ export default class User extends React.Component {
                 <PostList posts={posts}/>
               </React.Fragment>}
 
-            {error && (
-              <div className="error">
-                <p className={
-                  `error__text error__text--${theme === 'light' ? 'dark' : 'light'}`
-                }>ERROR: {error}</p>
-              </div>
-            )}
+              {error && <p className='error'>ERROR: {error}</p>}
           </div>
         )}
 
