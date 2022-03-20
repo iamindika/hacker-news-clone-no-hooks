@@ -79,13 +79,7 @@ export default class CommentList extends React.Component {
               </section>
             )}
 
-            {error && (
-              <div className="error">
-                <p className={
-                  `error__text`
-                }>ERROR: {error}</p>
-              </div>
-            )}
+            {error && <p className='error'>ERROR: {error}</p>}
           </div>
         )}
       </ThemeContext.Consumer>
