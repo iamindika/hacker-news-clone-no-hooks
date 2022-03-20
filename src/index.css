@@ -45,17 +45,10 @@ html {
 .error {
   margin-top: 2rem;
   min-height: 100vh;
-}
-
-.error__text {
   text-align: center;
   font-size: 2rem;
   font-weight: 600;
 }
-
-.error__text--light {
-  color: rgb(250, 240, 230);
-} 
 
 .desc {
   color: #808080;
@@ -67,12 +60,20 @@ html {
 }
 
 .bg-dark {
-  background-color: rgb(53,56,57);
+  background-color: rgb(53, 56, 57);
   color: rgb(250, 240, 230);
 }
 
 .icon {
   cursor: pointer;
+}
+
+.loading {
+    min-height: 100vh;
+    margin-top: 2rem;
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 600;
 }
 
 .nav {
