@@ -60,7 +60,7 @@ html {
 
 .loading {
     min-height: 100vh;
-    margin-top: 2rem;
+    padding-top: 2rem;
     text-align: center;
     font-size: 2rem;
     font-weight: 600;
@@ -103,7 +103,7 @@ html {
 }
 
 .user {
-  margin-top: 2rem;
+  padding-top: 2rem;
 }
 
 .user__id {
