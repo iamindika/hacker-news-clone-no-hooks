@@ -11,9 +11,14 @@ import {getDateString} from '../utils/date';
 import queryString from 'query-string';
 
 const style = {
-  marginTop: '3rem',
-  fontSize: '2.5rem',
-  fontWeight: '500',
+  container: {
+    minHeight: '100vh'
+  },
+  content: {
+    marginTop: '3rem',
+    fontSize: '2.5rem',
+    fontWeight: '500',
+  }
 }
 
 function Profile({user}) {
@@ -79,7 +84,7 @@ export default class User extends React.Component {
     return (
       <ThemeContext.Consumer>
         {({theme}) => (
-          <div className={`bg-${theme}`}>
+          <div className={`bg-${theme}`} style={style.container}>
             {!user && !error 
               ? <Loading text="Fetching User"/>
               : null}
@@ -93,7 +98,7 @@ export default class User extends React.Component {
             {posts && 
               <React.Fragment>
                 <div className="container">
-                  <h2 style={style}>Posts</h2>
+                  <h2 style={style.content}>Posts</h2>
                 </div>
                 <PostList posts={posts}/>
               </React.Fragment>}
