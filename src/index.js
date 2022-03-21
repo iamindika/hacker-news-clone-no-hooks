@@ -32,6 +32,7 @@ class App extends React.Component {
           <Route exact path='/' component={News}/>
           <Route path='/new' component={News}/>
           <Route path='/user' component={User}/>
+          <Route path='/post' component={CommentList}/>
         </ThemeContext.Provider>
       </Router>
     )
