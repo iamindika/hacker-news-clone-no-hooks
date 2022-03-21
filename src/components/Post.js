@@ -22,8 +22,8 @@ export default function Post({post, size}) {
                     to={{pathname: '/user', search: `?id=${post.by}`}}>{post.by}</Link>
             &nbsp;on {getDateString(post.time)} with
             &nbsp;<a  className={theme === 'dark' ? 'light-link' : 'dark-link'} 
-                      href="#">{post.kids ? post.kids.length : 0}</a>
-            &nbsp;ranked comments
+                      href="#">{post.descendants}</a>
+            &nbsp;comments
           </p>
         </article>
       )}
