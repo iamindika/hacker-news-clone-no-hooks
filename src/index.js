@@ -1,9 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import Nav from './components/Nav';
 import News from './components/News';
 import User from './components/User';
 import CommentList from './components/CommentList';
 import {ThemeContext} from './contexts/theme';
+import {
+  BrowserRouter as Router,
+  Route
+} from 'react-router-dom';
 import './index.css';
 
 class App extends React.Component {
@@ -20,9 +25,13 @@ class App extends React.Component {
 
   render() {
     return (
-      <ThemeContext.Provider value={this.state}>
-        <News/>
-      </ThemeContext.Provider>
+      <Router>
+        <ThemeContext.Provider value={this.state}>
+          <Nav/>
+          
+          <Route path='/' component={News}/>
+        </ThemeContext.Provider>
+      </Router>
     )
   }
 }
