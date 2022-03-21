@@ -1,36 +1,37 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import {ThemeContext} from '../contexts/theme';
 import {MdLightMode, MdDarkMode} from 'react-icons/md';
+import {NavLink} from 'react-router-dom';
 
-export default function Nav({selected, handleClick}) {
-  const storyTypes = ['Top', 'New'];
+const activeStyle = {
+  color: '#FF0800'
+}
 
+export default function Nav(props) {
   return (
     <ThemeContext.Consumer>
       {({theme, toggleTheme}) => (
         <div className="container nav row">
           <ul className="nav__list row">
-            {storyTypes.map(type => (
-              <li 
-                key={type} 
-              > 
-                {selected 
-                  ? <button
-                      className={
-                        `btn link ${theme === 'dark' ? 'light' : 'dark'}-link`
-                      }
-                      style={selected === type ? {color: '#FF0800'} : null}
-                      onClick={() => handleClick(type)}
-                    >{type}</button>
-                  : <a 
-                      className={
-                        `link ${theme === 'dark' ? 'light' : 'dark'}-link`
-                      }
-                      href="#"
-                    >{type}</a>}
-              </li>
-            ))}
+            <li> 
+              <NavLink
+                exact
+                to="/"
+                activeStyle={activeStyle}
+                className={
+                  `link ${theme === 'dark' ? 'light-link' : 'dark-link'}`
+                }
+              >Top</NavLink>
+            </li>
+            <li> 
+              <NavLink
+                to="/new"
+                activeStyle={activeStyle}
+                className={
+                  `link ${theme === 'dark' ? 'light-link' : 'dark-link'}`
+                }
+              >New</NavLink>
+            </li>
           </ul>
           <div onClick={toggleTheme}>
             {theme === 'dark' 
@@ -48,9 +49,4 @@ export default function Nav({selected, handleClick}) {
       )}
     </ThemeContext.Consumer>
   )
-} 
-
-Nav.propTypes = {
-  selected: PropTypes.string,
-  handleClick: PropTypes.func
 }
