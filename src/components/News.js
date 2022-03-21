@@ -1,5 +1,4 @@
 import React from 'react';
-import Nav from './Nav';
 import Loading from './Loading';
 import PostList from './PostList';
 import {getPosts, getPostDetails} from '../utils/api';
@@ -10,7 +9,6 @@ export default class News extends React.Component {
     super(props);
 
     this.state = {
-      selected: 'Top',
       error: null
     }
 
@@ -18,7 +16,8 @@ export default class News extends React.Component {
   }
 
   componentDidMount() {
-    const {selected} = this.state;
+    const path = this.props.location.pathname;
+    const selected = path === '/' ? 'Top' : 'New';
 
     getPosts(selected)
       .then(data => {
@@ -29,18 +28,22 @@ export default class News extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    const {selected} = this.state;
+    const path = this.props.location.pathname;
 
-    if(prevState.selected !== selected && !this.state[selected]) {
-      this.setState({error: null});
+    if(prevProps.location.pathname !== path) {
+      const selected = path === '/' ? 'Top' : 'New';
 
-      getPosts(selected)
-        .then(data => {
-          Promise.all(data.slice(0, 50).map(postId => getPostDetails(postId)))
-            .then(posts => this.setState({[selected]: posts}))
-            .catch(error => this.setState({error: error.message}))
-        })
-        .catch(error => this.setState({error: error.message}));
+      if(!this.state[selected]) {
+        this.setState({error: null});
+  
+        getPosts(selected)
+          .then(data => {
+            Promise.all(data.slice(0, 50).map(postId => getPostDetails(postId)))
+              .then(posts => this.setState({[selected]: posts}))
+              .catch(error => this.setState({error: error.message}))
+          })
+          .catch(error => this.setState({error: error.message}));
+      }
     }
   }
 
@@ -49,17 +52,14 @@ export default class News extends React.Component {
   }
 
   render() {
-    const {selected, error} = this.state;
+    const path = this.props.location.pathname;
+    const selected = path === '/' ? 'Top' : 'New';
+    const {error} = this.state;
 
     return (
       <ThemeContext.Consumer>
         {({theme}) => (
           <div className={`bg-${theme}`}>
-            <Nav 
-              selected={this.state.selected}
-              handleClick={this.handleClick}
-            />
-
             {!error && !this.state[selected]
               ? <Loading text={`Fetching ${selected} Stories`}/>
               : null} 
