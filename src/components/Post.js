@@ -21,8 +21,11 @@ export default function Post({post, size}) {
             by <Link className={theme === 'dark' ? 'light-link' : 'dark-link'} 
                     to={{pathname: '/user', search: `?id=${post.by}`}}>{post.by}</Link>
             &nbsp;on {getDateString(post.time)} with
-            &nbsp;<a  className={theme === 'dark' ? 'light-link' : 'dark-link'} 
-                      href="#">{post.descendants}</a>
+            &nbsp;<Link className={theme === 'dark' ? 'light-link' : 'dark-link'} 
+                        to={{
+                          pathname: '/post',
+                          search: `?id=${post.id}`
+                        }}>{post.descendants}</Link>
             &nbsp;comments
           </p>
         </article>
