@@ -76,10 +76,6 @@ export default class User extends React.Component {
   render() {
     const {user, error, posts} = this.state;
     
-    if(posts) {
-      console.log('Posts: ', posts);
-    }
-
     return (
       <ThemeContext.Consumer>
         {({theme}) => (
