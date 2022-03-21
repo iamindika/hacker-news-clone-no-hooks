@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {ThemeContext} from '../contexts/theme';
 import {getDateString} from '../utils/date';
+import {Link} from 'react-router-dom';
 
 export default function Post({post, size}) {
   return (
@@ -17,8 +18,8 @@ export default function Post({post, size}) {
             >{post.title}</a> 
           </h2>
           <p className="desc">
-            by <a className={theme === 'dark' ? 'light-link' : 'dark-link'} 
-                  href="#">{post.by}</a>
+            by <Link className={theme === 'dark' ? 'light-link' : 'dark-link'} 
+                    to={{pathname: '/user', search: `?id=${post.by}`}}>{post.by}</Link>
             &nbsp;on {getDateString(post.time)} with
             &nbsp;<a  className={theme === 'dark' ? 'light-link' : 'dark-link'} 
                       href="#">{post.kids ? post.kids.length : 0}</a>
