@@ -28,8 +28,10 @@ class App extends React.Component {
       <Router>
         <ThemeContext.Provider value={this.state}>
           <Nav/>
-          
-          <Route path='/' component={News}/>
+
+          <Route exact path='/' component={News}/>
+          <Route path='/new' component={News}/>
+          <Route path='/user' component={User}/>
         </ThemeContext.Provider>
       </Router>
     )
