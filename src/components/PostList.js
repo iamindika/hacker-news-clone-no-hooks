@@ -4,7 +4,7 @@ import Post from './Post';
 
 export default function PostList({posts, size = 1.75}) {
   return (
-    <section className="container grid">
+    <section className="container grid post-list">
       {posts.map(post => (
         <Post
           key={post.id}  
