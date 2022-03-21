@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Nav from './Nav';
 import Loading from './Loading';
 import PostList from './PostList';
 import {ThemeContext} from '../contexts/theme';
@@ -9,6 +8,7 @@ import {
   getPostDetails, 
   createMarkup} from '../utils/api';
 import {getDateString} from '../utils/date';
+import queryString from 'query-string';
 
 const style = {
   marginTop: '3rem',
@@ -56,15 +56,16 @@ export default class User extends React.Component {
   }
 
   componentDidMount() {
-    getUser(this.props.username)
+    const {id} = queryString.parse(this.props.location.search);
+
+    getUser(id)
       .then(user => {
         this.setState({user})
 
-        Promise.all(user.submitted.map(postId => getPostDetails(postId)))
+        Promise.all(user.submitted.slice(0, 50).map(postId => getPostDetails(postId)))
           .then(posts => {
             const storyPosts = posts.filter(
-              post => !post.deleted && post.type === 'story')
-              .slice(0, 50);
+                post => !post.dead && !post.deleted && post.type === 'story');
 
             this.setState({posts: storyPosts});
           })
@@ -83,8 +84,6 @@ export default class User extends React.Component {
       <ThemeContext.Consumer>
         {({theme}) => (
           <div className={`bg-${theme}`}>
-            <Nav/>
-
             {!user && !error 
               ? <Loading text="Fetching User"/>
               : null}
@@ -111,11 +110,3 @@ export default class User extends React.Component {
     )
   }
 }
-
-User.propTypes = {
-  username: PropTypes.string.isRequired
-};
-
-User.defaultProps = {
-  username: 'Topolomancer'
-};
