@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {ThemeContext} from '../contexts/theme';
-import {getDateString} from '../utils/date';
 import {createMarkup} from '../utils/api';
+import {getDateString} from '../utils/date';
 
-export default function Comment({comment}) {
+export default function CommentItem({comment}) {
   return (
     <ThemeContext.Consumer>
       {({theme}) => (
@@ -24,4 +24,8 @@ export default function Comment({comment}) {
       )}
     </ThemeContext.Consumer>
   )
+}
+
+CommentItem.propTypes = {
+  comment: PropTypes.object
 }
