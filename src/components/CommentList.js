@@ -29,7 +29,7 @@ export default class CommentList extends React.Component {
     const {comments, error} = this.state;
 
     return (
-      <section>
+      <section className="grid">
         {error && <p className="error">Error: {error}</p>}
 
         {!comments && !error 
