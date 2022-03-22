@@ -10,7 +10,7 @@ const style = {
   paddingTop: '2rem',
   minHeight: '100vh'
 }
-export default class CommentList extends React.Component {
+export default class CommentWrapper extends React.Component {
   constructor(props) {
     super(props);
 
@@ -49,7 +49,7 @@ export default class CommentList extends React.Component {
                   size={3}  
                 />
 
-                {/* {post.descendants && <Comment comments={post.kids.slice(0, 50)}/>} */}
+                {post.descendants && <Comment comments={post.kids.slice(0, 50)}/>}
               </div> 
             )}
           </div>

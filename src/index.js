@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import Nav from './components/Nav';
 import News from './components/News';
 import User from './components/User';
-import CommentList from './components/CommentList';
+import CommentWrapper from './components/CommentWrapper';
 import {ThemeContext} from './contexts/theme';
 import {
   BrowserRouter as Router,
@@ -32,7 +32,7 @@ class App extends React.Component {
           <Route exact path='/' component={News}/>
           <Route path='/new' component={News}/>
           <Route path='/user' component={User}/>
-          <Route path='/post' component={CommentList}/>
+          <Route path='/post' component={CommentWrapper}/>
         </ThemeContext.Provider>
       </Router>
     )
