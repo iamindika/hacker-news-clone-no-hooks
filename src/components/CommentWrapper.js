@@ -1,7 +1,7 @@
 import React from 'react';
 import Loading from './Loading';
 import Post from './Post';
-import Comment from './Comment';
+import CommentList from './CommentList';
 import {ThemeContext} from '../contexts/theme';
 import {getPostDetails} from '../utils/api';
 import queryString from 'query-string';
@@ -10,6 +10,7 @@ const style = {
   paddingTop: '2rem',
   minHeight: '100vh'
 }
+
 export default class CommentWrapper extends React.Component {
   constructor(props) {
     super(props);
@@ -40,7 +41,7 @@ export default class CommentWrapper extends React.Component {
             {error && <p className='error'>ERROR: {error}</p>}
 
             {post && (
-              <div 
+              <div
                 className="container"
                 style={style}
               >
@@ -49,7 +50,9 @@ export default class CommentWrapper extends React.Component {
                   size={3}  
                 />
 
-                {post.descendants && <Comment comments={post.kids.slice(0, 50)}/>}
+                {post.descendants !== 0  
+                  ? <CommentList ids={post.kids.slice(0, 50)}/>
+                  : null}
               </div> 
             )}
           </div>
