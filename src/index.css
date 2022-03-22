@@ -119,7 +119,7 @@ html {
 .comment {
   margin-top: 1.5rem;
   border-radius: .5rem;
-  padding: .5rem 1rem;
+  padding: 1rem 1.25rem;
 }
 
 .comment--dark {
@@ -127,7 +127,7 @@ html {
 }
 
 .comment--light {
-  background-color: rgba(229,228,226,0.6);
+  background-color: rgb(229, 228, 226);
 }
 
 .comment__text {
