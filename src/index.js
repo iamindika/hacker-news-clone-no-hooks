@@ -5,6 +5,7 @@ import News from './components/News';
 import User from './components/User';
 import CommentWrapper from './components/CommentWrapper';
 import FourOFour from './components/FourOFour';
+import Loading from './components/Loading';
 import {ThemeContext} from './contexts/theme';
 import {
   BrowserRouter as Router,
@@ -27,13 +28,15 @@ class App extends React.Component {
         <ThemeContext.Provider value={this.state}>
           <Nav/>
 
-          <Switch>
-            <Route exact path='/' component={News}/>
-            <Route path='/new' component={News}/>
-            <Route path='/user' component={User}/>
-            <Route path='/post' component={CommentWrapper}/>
-            <Route component={FourOFour}/>
-          </Switch>
+          <React.Suspense fallback={<Loading/>}>
+            <Switch>
+              <Route exact path='/' component={News}/>
+              <Route path='/new' component={News}/>
+              <Route path='/user' component={User}/>
+              <Route path='/post' component={CommentWrapper}/>
+              <Route component={FourOFour}/>
+            </Switch>
+          </React.Suspense>
         </ThemeContext.Provider>
       </Router>
     )
