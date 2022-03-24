@@ -5,15 +5,9 @@ import {getPosts, getPostDetails} from '../utils/api';
 import {ThemeContext} from '../contexts/theme';
 
 export default class News extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      error: null,
-      posts: null
-    }
-
-    this.handleClick = this.handleClick.bind(this);
+  state = {
+    error: null,
+    posts: null
   }
 
   componentDidMount() {
@@ -46,7 +40,7 @@ export default class News extends React.Component {
     }
   }
 
-  handleClick(type) {
+  handleClick = (type) => {
     this.setState({selected: type})
   }
 
