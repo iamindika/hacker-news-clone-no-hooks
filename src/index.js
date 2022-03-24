@@ -1,10 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Nav from './components/Nav';
-import News from './components/News';
-import User from './components/User';
-import CommentWrapper from './components/CommentWrapper';
-import FourOFour from './components/FourOFour';
 import Loading from './components/Loading';
 import {ThemeContext} from './contexts/theme';
 import {
@@ -13,6 +9,11 @@ import {
   Switch
 } from 'react-router-dom';
 import './index.css';
+
+const News = React.lazy(() => import('./components/News'));
+const User = React.lazy(() => import('./components/User'));
+const CommentWrapper = React.lazy(() => import('./components/CommentWrapper'));
+const FourOFour = React.lazy(() => import('./components/FourOFour'));
 
 class App extends React.Component {
   state = {
