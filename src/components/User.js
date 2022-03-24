@@ -50,14 +50,10 @@ Profile.propTypes = {
 }
 
 export default class User extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      user: null,
-      error: null,
-      posts: null
-    }
+  state = {
+    user: null,
+    error: null,
+    posts: null
   }
 
   componentDidMount() {
