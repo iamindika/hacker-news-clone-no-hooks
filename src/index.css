@@ -33,7 +33,7 @@ html {
 }
 
 .error {
-  margin-top: 2rem;
+  padding-top: 2rem;
   min-height: 100vh;
   text-align: center;
   font-size: 2rem;
