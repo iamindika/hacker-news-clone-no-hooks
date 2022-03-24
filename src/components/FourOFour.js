@@ -6,7 +6,9 @@ export default function FourOFour(props) {
   return (
     <ThemeContext.Consumer>
       {({theme}) => (
-        <p className={`error bg-${theme}`}>404</p>
+        <p 
+          className={`error bg-${theme}`}
+        >404: URL "{props.location.pathname}" is not valid!</p>
       )}
     </ThemeContext.Consumer>
   )
