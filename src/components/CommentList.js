@@ -6,13 +6,9 @@ import {ThemeContext} from '../contexts/theme';
 import {getPostDetails} from '../utils/api';
 
 export default class CommentList extends React.Component {
-  constructor(props){
-    super(props);
-
-    this.state = {
-      comments: null,
-      error: null
-    }
+  state = {
+    comments: null,
+    error: null
   }
 
   componentDidMount() {

@@ -12,13 +12,9 @@ const style = {
 }
 
 export default class CommentWrapper extends React.Component {
-  constructor(props) {
-    super(props);
-
-      this.state = {
-        post: null,
-        error: null
-      }
+  state = {
+    post: null,
+    error: null
   }
 
   componentDidMount() {
