@@ -4,7 +4,7 @@ Hacker News Clone is an app that allows users to navigate recent and popular new
 
 ## Final Product
 
-[Live Site](https://astounding-puffpuff-302858.netlify.app/)
+[Live Site via Netlify](https://astounding-puffpuff-302858.netlify.app/)
 
 !["Screenshot of News Feed"](https://github.com/iamindika/hacker-news-clone-no-hooks/blob/main/docs/News_Feed.png)
 !["Screenshot of Profile Page"](https://github.com/iamindika/hacker-news-clone-no-hooks/blob/main/docs/Profile.png)
